@@ -31,12 +31,9 @@ public class ListActivityAdapter extends RecyclerView.Adapter<ListActivityViewHo
         if(position % 2 == 0){
             holder.hankHolder.setImageResource(R.drawable.hank_happy);
         }
-        if(thisStudentName.substring(3,thisStudentName.length()-1).contains("7")){
+        String lastDigit = thisStudentName.substring(thisStudentName.length() - 1);
+        if (lastDigit.contains("7")) {
             holder.sevenImage.setVisibility(View.VISIBLE);
-            Log.v("CONTAINS7",thisStudentName+" contains 7");
-        }
-        else{
-            Log.v("CONTAINS7",thisStudentName+" does not contain 7");
         }
     }
 
