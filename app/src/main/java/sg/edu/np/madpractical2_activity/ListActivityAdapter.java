@@ -24,16 +24,16 @@ public class ListActivityAdapter extends RecyclerView.Adapter<ListActivityViewHo
     }
 
     public void onBindViewHolder(ListActivityViewHolder holder, int position){
+        holder.sevenImage.setVisibility(View.GONE);
         String thisStudentName = listOfStudent.get(position).name;
         holder.name.setText(thisStudentName);
         holder.description.setText(listOfStudent.get(position).getDescription());
         if(position % 2 == 0){
             holder.hankHolder.setImageResource(R.drawable.hank_happy);
         }
-        if(thisStudentName.contains("7")){
+        if(thisStudentName.substring(3,thisStudentName.length()-1).contains("7")){
             holder.sevenImage.setVisibility(View.VISIBLE);
             Log.v("CONTAINS7",thisStudentName+" contains 7");
-
         }
         else{
             Log.v("CONTAINS7",thisStudentName+" does not contain 7");
