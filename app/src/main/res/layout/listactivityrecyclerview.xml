@@ -14,7 +14,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hank_depressed" />
+        app:srcCompat="@drawable/hank_happy" />
 
     <TextView
         android:id="@+id/laRname"

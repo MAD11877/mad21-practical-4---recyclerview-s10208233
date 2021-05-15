@@ -17,6 +17,8 @@ import java.util.Random;
 
 public class ListActivity extends AppCompatActivity {
     private final static String TAG =  "FINDTHIS ";
+    static ArrayList<User> staticList;
+    ListActivityAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +31,19 @@ public class ListActivity extends AppCompatActivity {
         for (int i = 1; i <= 20; i++){
             listOfUsers.add(new User("Name"+randomInt(9999), String.valueOf(randomInt(9999)),i,randomTF()));
         }
+        staticList = listOfUsers;
         Log.v(TAG,listOfUsers.toString());
 
         //  SET RECYCLERVIEW
         RecyclerView recyclerView = findViewById(R.id.laRview);
-        ListActivityAdapter laAdapter = new ListActivityAdapter(listOfUsers);
+        ListActivityAdapter laAdapter = new ListActivityAdapter(staticList);
         LinearLayoutManager laLayoutmanager = new LinearLayoutManager(this);
 
         recyclerView.setLayoutManager(laLayoutmanager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(laAdapter);
 
+        adapter = laAdapter;
 
 
 
@@ -79,12 +83,15 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private boolean randomTF(){
-        if(randomInt(2)==2){
-            return true;
-        }
-        else{
-            return false;
-        }
+        Random random = new Random();
+        return random.nextBoolean();
+    }
+
+        @Override
+    protected void onResume(){
+        super.onResume();
+        Log.v(TAG,"Resume!");
+        adapter.notifyDataSetChanged();
     }
 
 }
